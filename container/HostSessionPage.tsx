@@ -4,30 +4,31 @@ import Button from "@/components/Button";
 import Layout from "@/components/Layout";
 import Page from "@/components/Page";
 import SessionLink from "@/components/SessionLink";
+import SetupForm from "@/components/SetupForm";
 import StoryHeading from "@/components/StoryHeading";
 import StoryResultReport from "@/components/StoryResultReport";
 import Table from "@/components/Table";
-import { Session } from "@/sessions/session";
+import { useHostSession } from "@/sessions/host";
 
-export default function HostSessionPage({
-  session,
-  onEndSession,
-  onRevealCards,
-  onNextStory,
-  onKickPlayer,
-}: {
-  session: Session;
-  onEndSession: () => void;
-  onRevealCards: () => void;
-  onNextStory: () => void;
-  onKickPlayer: (playerId: string) => void;
-}) {
+export default function HostSessionPage() {
+  const [
+    session,
+    createSession,
+    endSession,
+    revealCards,
+    nextStory,
+    kickPlayer,
+  ] = useHostSession();
+
+  if (!session) {
+    return <SetupForm onCreateSession={createSession} />;
+  }
   // @todo handle if this is missing
   const story = session.stories.find((s) => s.id === session.currentStory);
 
   const onClickEndSession = () => {
     if (confirm("Are you sure you want to end the session?")) {
-      onEndSession();
+      endSession();
     }
   };
 
@@ -40,10 +41,10 @@ export default function HostSessionPage({
           <Table
             story={story!}
             players={session.players}
-            onKickPlayer={onKickPlayer}
+            onKickPlayer={kickPlayer}
           >
             {!story!.revealed && (
-              <Button as="a" onClick={onRevealCards}>
+              <Button as="a" onClick={revealCards}>
                 Reveal Cards
               </Button>
             )}
@@ -53,7 +54,7 @@ export default function HostSessionPage({
             <>
               <StoryResultReport story={story!} players={session.players} />
               <div className="text-center mt-8">
-                <Button as="a" onClick={onNextStory}>
+                <Button as="a" onClick={nextStory}>
                   Next Story
                 </Button>
               </div>

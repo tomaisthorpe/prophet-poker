@@ -4,24 +4,36 @@ import Layout from "@/components/Layout";
 import Page from "@/components/Page";
 import SessionLink from "@/components/SessionLink";
 import Table from "@/components/Table";
-import { ConnectionStatus, Player } from "@/sessions/player";
-import { Session } from "@/sessions/session";
+import { usePlayer, usePlayerSession } from "@/sessions/player";
 import { XCircleIcon } from "@heroicons/react/24/solid";
 import Deck from "@/components/Deck";
 import StoryHeading from "@/components/StoryHeading";
 import StoryResultReport from "@/components/StoryResultReport";
+import SetupPlayerForm from "@/components/SetupPlayerForm";
 
-export default function SessionPage({
-  player,
-  session,
-  connectionStatus,
-  onSelectCard,
+export default function PlayerSessionPage({
+  sessionId,
 }: {
-  player: Player;
-  session: Session;
-  connectionStatus: ConnectionStatus;
-  onSelectCard: (card: string) => void;
+  sessionId: string;
 }) {
+  const [player, setPlayer] = usePlayer();
+  const [session, playerSession, connectionStatus] = usePlayerSession(
+    player,
+    sessionId
+  );
+
+  if (!player) {
+    return <SetupPlayerForm onUpdatePlayer={setPlayer} />;
+  }
+
+  if (!session) {
+    return <p>Loading...</p>;
+  }
+
+  const onSelectCard = (card: string) => {
+    playerSession?.selectCard(card);
+  };
+
   const story = session.stories.find((s) => s.id === session.currentStory);
 
   let selectedCard: string | undefined;
