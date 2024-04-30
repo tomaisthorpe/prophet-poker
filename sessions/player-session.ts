@@ -1,7 +1,7 @@
 "use client";
 
 import Peer, { DataConnection } from "peerjs";
-import { createPlayerPeer } from "./peer";
+import { createPeer } from "./peer";
 import { Session } from "./session";
 import { ConnectionStatus, Player } from "./player";
 
@@ -14,7 +14,7 @@ export default class PlayerSession {
     private player: Player,
     sessionId: string,
     private setSession: (s: Session) => void,
-    private setConnectionStatus: (s: ConnectionStatus) => void
+    private setConnectionStatus: (s: ConnectionStatus) => void,
   ) {
     // Connect to PeerJS, ready for connect to the client
     this.connect(sessionId);
@@ -22,7 +22,7 @@ export default class PlayerSession {
 
   private async connect(sessionId: string) {
     this.setConnectionStatus({ status: "connecting" });
-    this.peer = await createPlayerPeer(this.player.id);
+    this.peer = await createPeer(this.player.id);
 
     this.connection = this.peer.connect(sessionId, { reliable: true });
     this.connection.on("open", () => {
@@ -60,7 +60,7 @@ export default class PlayerSession {
   public selectCard(card: string): void {
     // Set on current player
     const story = this.session.stories.find(
-      (s) => s.id === this.session.currentStory
+      (s) => s.id === this.session.currentStory,
     );
 
     if (story?.revealed) return;
