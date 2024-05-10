@@ -12,14 +12,15 @@ export default class HostSession {
   constructor(
     private session: Session,
     private setSession: (s: Session) => void,
+    peerConfig?: RTCConfiguration
   ) {
     // Connect to PeerJS, ready for clients to connect
-    this.connect();
+    this.connect(peerConfig);
   }
 
-  private async connect() {
+  private async connect(peerConfig?: RTCConfiguration) {
     const { createPeer } = await import("./peer");
-    this.peer = await createPeer(this.session.id);
+    this.peer = await createPeer(this.session.id, peerConfig);
     // Setup the listeners for new connections
     this.peer.on("connection", this.onConnection.bind(this));
 
@@ -38,7 +39,7 @@ export default class HostSession {
             this.session,
             data.story,
             c.peer,
-            data.card,
+            data.card
           );
 
           break;
@@ -60,7 +61,7 @@ export default class HostSession {
 
     c.on("close", () => {
       this.connections = this.connections.filter(
-        (conn) => conn.peer !== c.peer,
+        (conn) => conn.peer !== c.peer
       );
     });
 
@@ -147,7 +148,7 @@ function selectCard(
   session: Session,
   storyId: number,
   playerId: string,
-  card: string,
+  card: string
 ): Session {
   const story = session.stories.find((s) => s.id === storyId);
   if (!story) return session;

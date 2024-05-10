@@ -13,13 +13,16 @@ import SetupPlayerForm from "@/components/SetupPlayerForm";
 
 export default function PlayerSessionPage({
   sessionId,
+  peerConfig,
 }: {
   sessionId: string;
+  peerConfig?: RTCConfiguration;
 }) {
   const [player, setPlayer] = usePlayer();
   const [session, playerSession, connectionStatus] = usePlayerSession(
     player,
-    sessionId
+    sessionId,
+    peerConfig
   );
 
   if (!player) {

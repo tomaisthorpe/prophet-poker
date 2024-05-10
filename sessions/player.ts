@@ -34,7 +34,8 @@ export interface ConnectionStatus {
 
 export function usePlayerSession(
   player: Player | undefined,
-  sessionId: string
+  sessionId: string,
+  peerConfig?: RTCConfiguration
 ): [Session | undefined, PlayerSession | undefined, ConnectionStatus] {
   const [session, setSession] = useState<Session | undefined>();
   const [playerSession, setPlayerSession] = useState<PlayerSession>();
@@ -53,7 +54,8 @@ export function usePlayerSession(
       player,
       sessionId,
       updateSession,
-      setConnection
+      setConnection,
+      peerConfig
     );
     setPlayerSession(ps);
   }, [player, sessionId]);

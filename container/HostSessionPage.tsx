@@ -10,7 +10,11 @@ import StoryResultReport from "@/components/StoryResultReport";
 import Table from "@/components/Table";
 import { useHostSession } from "@/sessions/host";
 
-export default function HostSessionPage() {
+export default function HostSessionPage({
+  peerConfig,
+}: {
+  peerConfig?: RTCConfiguration;
+}) {
   const [
     session,
     createSession,
@@ -18,7 +22,7 @@ export default function HostSessionPage() {
     revealCards,
     nextStory,
     kickPlayer,
-  ] = useHostSession();
+  ] = useHostSession(peerConfig);
 
   if (!session) {
     return <SetupForm onCreateSession={createSession} />;

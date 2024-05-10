@@ -7,7 +7,9 @@ export interface SessionConfig {
   name: string;
 }
 
-export function useHostSession(): [
+export function useHostSession(
+  peerConfig?: RTCConfiguration
+): [
   Session | null,
   (cfg: SessionConfig) => void,
   () => void,
@@ -27,7 +29,7 @@ export function useHostSession(): [
   useEffect(() => {
     if (hostSession || !session) return;
 
-    const hs = new HostSession(session, updateSession);
+    const hs = new HostSession(session, updateSession, peerConfig);
     setHostSession(hs);
   }, [hostSession, session]);
 

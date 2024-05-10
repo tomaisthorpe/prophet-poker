@@ -15,14 +15,15 @@ export default class PlayerSession {
     sessionId: string,
     private setSession: (s: Session) => void,
     private setConnectionStatus: (s: ConnectionStatus) => void,
+    peerConfig?: RTCConfiguration
   ) {
     // Connect to PeerJS, ready for connect to the client
-    this.connect(sessionId);
+    this.connect(sessionId, peerConfig);
   }
 
-  private async connect(sessionId: string) {
+  private async connect(sessionId: string, peerConfig?: RTCConfiguration) {
     this.setConnectionStatus({ status: "connecting" });
-    this.peer = await createPeer(this.player.id);
+    this.peer = await createPeer(this.player.id, peerConfig);
 
     this.connection = this.peer.connect(sessionId, { reliable: true });
     this.connection.on("open", () => {
@@ -60,7 +61,7 @@ export default class PlayerSession {
   public selectCard(card: string): void {
     // Set on current player
     const story = this.session.stories.find(
-      (s) => s.id === this.session.currentStory,
+      (s) => s.id === this.session.currentStory
     );
 
     if (story?.revealed) return;
