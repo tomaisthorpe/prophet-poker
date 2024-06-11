@@ -60,6 +60,7 @@ export default class HostSession {
     c.on("data", this.onMessage(c).bind(this));
 
     c.on("close", () => {
+      console.log("Connection closed", c.peer);
       this.connections = this.connections.filter(
         (conn) => conn.peer !== c.peer
       );
