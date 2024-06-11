@@ -30,7 +30,7 @@ export default function PlayerSessionPage({
   }
 
   if (!session) {
-    return <p>Loading...</p>;
+    return <div className="mt-12 text-lg text-center">Loading...</div>;
   }
 
   const onSelectCard = (card: string) => {
