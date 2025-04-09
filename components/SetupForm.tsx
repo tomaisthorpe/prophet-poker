@@ -21,7 +21,7 @@ export default function SetupForm({
     <Layout noNav>
       <Page>
         <Head>
-          <title>Start New Session | Prophet Poker</title>
+          <title>Host New Session | Prophet Poker</title>
         </Head>
         <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-md">
