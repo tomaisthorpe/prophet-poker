@@ -3,7 +3,6 @@ import Layout from "@/components/Layout";
 import Page from "@/components/Page";
 import { Player } from "@/sessions/player";
 import { XCircleIcon } from "@heroicons/react/24/solid";
-import Head from "next/head";
 import { v4 as uuidv4 } from "uuid";
 
 export default function SetupPlayerForm({
@@ -21,9 +20,6 @@ export default function SetupPlayerForm({
   return (
     <Layout noNav>
       <Page>
-        <Head>
-          <title>Join session | Prophet Poker</title>
-        </Head>
         <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-md">
             <div className="text-3xl text-center">🎴🃏</div>

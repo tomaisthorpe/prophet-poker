@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Prophet Poker",
-  description: "",
+  description: "WebRTC based planning poker.",
 };
 
 export default function RootLayout({
