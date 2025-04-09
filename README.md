@@ -2,11 +2,14 @@
 
 Web-based planning poker application. It uses WebRTC for peer-to-peer client communication. No data is stored on any server - all information is shared directly between the clients with one client acting as the host.
 
+![Screenshot of the planning poker application with the cards not yet revealed](./screenshot.png)
+
 ## Features
 
 - **Privacy-Focused**: No server storage of session data
 - **Peer-to-Peer**: WebRTC enables direct client communication
 - **Self-Hostable**: Easy deployment with Docker
+- 🎉 Confetti with every reveal 
 
 ## Usage
 
