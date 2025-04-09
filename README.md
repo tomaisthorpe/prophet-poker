@@ -1,6 +1,7 @@
 # Prophet Poker
 
 Web-based planning poker application. It uses WebRTC for peer-to-peer client communication. No data is stored on any server - all information is shared directly between the clients with one client acting as the host.
+The app relies on [PeerJS](https://peerjs.com/) to make handling WebRTC a little easier.
 
 ![Screenshot of the planning poker application with the cards not yet revealed](./screenshot.png)
 
