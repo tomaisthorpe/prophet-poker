@@ -19,6 +19,10 @@ The app relies on [PeerJS](https://peerjs.com/) to make handling WebRTC a little
 3. Vote and reveal results when everyone has submitted
 4. Move to your next story!
 
+## Demo
+
+Try it out at https://poker.tom.tools
+
 ## Hosting
 This repository publishes a Docker image to [Docker Hub](https://hub.docker.com/r/tomaisthorpe/prophet-poker) which can be used to self-host the application. 
 The image exposes the service on port 3000. No other configuration is required.
