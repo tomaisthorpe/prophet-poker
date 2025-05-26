@@ -14,7 +14,7 @@
     "@heroicons/react": "^2.0.18",
     "@mui/x-charts": "^6.19.1",
     "clsx": "^2.0.0",
-    "next": "14.0.1",
+    "next": "^14.2.29",
     "peerjs": "^1.5.1",
     "react": "^18",
     "react-canvas-confetti": "^2.0.5",
