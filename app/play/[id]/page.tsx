@@ -1,7 +1,8 @@
 import PlayerSessionPage from "@/container/PlayerSessionPage";
 import { unstable_noStore as noStore } from "next/cache";
 
-export default function PlaySession({ params }: { params: { id: string } }) {
+export default async function PlaySession(props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   // Ensure this page is treated as dynamic
   // So that the envvar is read at runtime
   noStore();

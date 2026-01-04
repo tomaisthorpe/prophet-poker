@@ -6,32 +6,35 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
-    "@emotion/react": "^11.11.3",
-    "@emotion/styled": "^11.11.0",
-    "@heroicons/react": "^2.0.18",
-    "@mui/x-charts": "^6.19.1",
-    "clsx": "^2.0.0",
-    "next": "^14.2.29",
-    "peerjs": "^1.5.1",
-    "react": "^18",
-    "react-canvas-confetti": "^2.0.5",
-    "react-dom": "^18",
-    "uuid": "^9.0.1"
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@heroicons/react": "^2.2.0",
+    "@mui/x-charts": "^8.23.0",
+    "clsx": "^2.1.1",
+    "next": "15.5.9",
+    "peerjs": "^1.5.5",
+    "react": "19.2.3",
+    "react-canvas-confetti": "^2.0.7",
+    "react-dom": "19.2.3",
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "@types/uuid": "^9.0.7",
-    "autoprefixer": "^10.0.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.0.1",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "autoprefixer": "^10.4.23",
+    "eslint": "^9",
+    "eslint-config-next": "^15.5.9",
     "postcss": "^8",
-    "semantic-release": "^23.0.8",
+    "semantic-release": "^25.0.2",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
+  },
+  "overrides": {
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3"
   }
 }

@@ -18,7 +18,7 @@ export default function StoryResultReport({
 
   activePlayers.forEach((player) => {
     const choice = story.playerChoices.find(
-      (choice) => choice.id === player.id
+      (choice) => choice.id === player.id,
     );
     if (!choice) {
       counts[0]++;
@@ -36,7 +36,9 @@ export default function StoryResultReport({
             data: counts,
             color: "rgb(191, 219, 254)",
             valueFormatter: (v) => {
-              console.log(v);
+              if (v === null) {
+                return "";
+              }
               return `${v} - ${((v / activePlayers.length) * 100).toFixed(0)}%`;
             },
           },
@@ -49,7 +51,6 @@ export default function StoryResultReport({
         ]}
         height={200}
         width={300}
-        leftAxis={null}
         margin={{ left: 10, right: 10, top: 40, bottom: 30 }}
       />
     </div>
