@@ -8,14 +8,14 @@ export interface SessionConfig {
 }
 
 export function useHostSession(
-  peerConfig?: RTCConfiguration
+  peerConfig?: RTCConfiguration,
 ): [
   Session | null,
   (cfg: SessionConfig) => void,
   () => void,
   () => void,
   () => void,
-  (playerId: string) => void
+  (playerId: string) => void,
 ] {
   const [session, setSession] = useState<Session | null>(null);
 

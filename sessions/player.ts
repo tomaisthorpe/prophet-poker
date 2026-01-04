@@ -11,19 +11,18 @@ export interface Player {
 }
 
 export function usePlayer(): [Player | undefined, (player: Player) => void] {
-  const [player, setPlayer] = useState<Player | undefined>();
+  // Attempt to load player from local storage
+  const [player, setPlayer] = useState<Player | undefined>(() => {
+    let player = window.localStorage.getItem("player");
+    if (player) {
+      return JSON.parse(player);
+    }
+  });
+
   const updatePlayer = (player: Player) => {
     window.localStorage.setItem("player", JSON.stringify(player));
     setPlayer(player);
   };
-
-  // Attempt to load player from local storage
-  useEffect(() => {
-    let player = window.localStorage.getItem("player");
-    if (player) {
-      setPlayer(JSON.parse(player));
-    }
-  }, []);
 
   return [player, updatePlayer];
 }
@@ -35,7 +34,7 @@ export interface ConnectionStatus {
 export function usePlayerSession(
   player: Player | undefined,
   sessionId: string,
-  peerConfig?: RTCConfiguration
+  peerConfig?: RTCConfiguration,
 ): [Session | undefined, PlayerSession | undefined, ConnectionStatus] {
   const [session, setSession] = useState<Session | undefined>();
   const [playerSession, setPlayerSession] = useState<PlayerSession>();
@@ -55,7 +54,7 @@ export function usePlayerSession(
       sessionId,
       updateSession,
       setConnection,
-      peerConfig
+      peerConfig,
     );
     setPlayerSession(ps);
   }, [player, sessionId]);
